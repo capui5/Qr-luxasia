@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: CreateProfile
+version: 0.0.1
+modules:
+- name: CreateProfile-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: CreateProfile-destination-service
+    parameters:
+      content-target: true
+  - name: CreateProfile_html_repo_host
+    parameters:
+      service-key:
+        name: CreateProfile_html_repo_host-key
+  - name: uaa_CreateProfile
+    parameters:
+      service-key:
+        name: uaa_CreateProfile-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: salesorder_CreateProfile_html_repo_host
+          ServiceInstanceName: CreateProfile-html5-app-host-service
+          ServiceKeyName: CreateProfile_html_repo_host-key
+          sap.cloud.service: salesorder
+        - Authentication: OAuth2UserTokenExchange
+          Name: salesorder_uaa_CreateProfile
+          ServiceInstanceName: CreateProfile-xsuaa-service
+          ServiceKeyName: uaa_CreateProfile-key
+          sap.cloud.service: salesorder
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: CreateProfile-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: CreateProfile_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - comnewcustqrnewcustqr.zip
+      name: comnewcustqrnewcustqr
+      target-path: resources/
+- name: comnewcustqrnewcustqr
+  type: html5
+  path: newcustqr
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: CreateProfile-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: CreateProfile-destination-service
+    service-plan: lite
+- name: CreateProfile_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: CreateProfile-html5-app-host-service
+    service-plan: app-host
+- name: uaa_CreateProfile
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: CreateProfile-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

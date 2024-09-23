@@ -1,0 +1,304 @@
+<mvc:View
+    controllerName="com.newcustqr.newcustqr.controller.CreateNewCust"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        showHeader="false"
+        class="newcustpage"
+    >
+     <OverflowToolbar
+            class="header"
+            id="transheader"
+        >
+          
+            <Text
+                text="{i18n>Luxasia}"
+                class="mainmenutext"
+            />
+            <ToolbarSpacer />
+          
+        </OverflowToolbar>
+        <VBox
+            class="sapUiSmallMargin"
+            alignItems="Center"
+            justifyContent="Center"
+        >
+            <Title
+                text="{i18n>New_Customer_Profile}"
+                level="H3"
+                class="Newcustomer"
+            />
+            <Text
+                text="{i18n>Please_enter_details}"
+                class="pleaseenter"
+            />
+        </VBox>
+        <VBox class="sapUiSmallMargin">
+            <f:Form
+                id="FormChange354wideDual"
+                editable="true"
+                visible="true"
+            >
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        breakpointXL="1000"
+                        labelSpanXL="4"
+                        labelSpanL="4"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="3"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>First_Name}">
+                                <f:fields>
+                                    <Select
+                                        id="title"
+                                        selectedKey="{Country}"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                text="{i18n>Mr}"
+                                                key="1"
+                                            />
+                                            <core:Item
+                                                text="{i18n>Mrs}"
+                                                key="2"
+                                            />
+                                            <core:Item
+                                                text="{i18n>Ms}"
+                                                key="3"
+                                            />
+                                        </items>
+                                    </Select>
+                                    <Input
+                                        placeholder="{i18n>First_Name}"
+                                        id="fname"
+                                        required="true"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Last_Name}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Last_Name}"
+                                        id="lname"
+                                        required="true"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Email}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Email_Address}"
+                                        id="email"
+                                           required="true"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Mobile_Number}">
+                                <f:fields>
+                                    <Select
+                                        id="countrycode"
+                                       editable="false"
+                                        items="{path: 'CountryTelCodeModel>/' ,
+                                        length:5000}"
+                                           
+                                    >
+                                        <items>
+                                            <core:Item
+                                                text="{CountryTelCodeModel>TelCode}"
+                                                key="{CountryTelCodeModel>Land1}"
+                                            />
+                                        </items>
+
+                                        <layoutData>
+                                            <l:GridData span="XL2 L2 M2 S12" />
+                                        </layoutData>
+                                    </Select>
+                                    <Input
+                                        placeholder="{i18n>Mobile_Number}"
+                                        id="phoneno"
+                                           required="true"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="{i18n>Street_City}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Street}"
+                                        id="street1"
+                                        
+                                    />
+                                    <Input
+                                        placeholder="{i18n>City}"
+                                        id="city"
+                                       
+                                        
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Pincode}">
+                                <f:fields>
+                                    <Input
+                                        placeholder="{i18n>Pincode}"
+                                        id="pcode"
+                                       
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Country}">
+                                <f:fields>
+                                       <Select
+                                        items="{path: 'CountryModel>/',
+                                        length:5000}"
+                                        id="country"
+                                        editable="false"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                text="{CountryModel>Landx}"
+                                                key="{CountryModel>Land1}"
+                                            />
+                                        </items>
+                                    </Select>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="{i18n>Date_Of_Birth}">
+                                <f:fields>
+                                
+									 <DatePicker
+                                        id="datePickerId"
+                                        value="{
+						'path':'',
+						'type':'sap.ui.model.type.Date',
+						'formatOptions': {
+							'pattern': 'yyyy-MM-dd'
+						}
+					}"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+               <FlexBox
+            alignItems="Center"
+            justifyContent="Center"
+        >
+            <f:Form
+                id="FormChange354wideual"
+                editable="true"
+            >
+                <f:layout>
+                    <f:ResponsiveGridLayout
+                        breakpointXL="1500"
+                        labelSpanXL="4"
+                        labelSpanL="4"
+                        labelSpanM="4"
+                        labelSpanS="12"
+                        adjustLabelSpan="false"
+                        emptySpanXL="0"
+                        emptySpanL="0"
+                        emptySpanM="0"
+                        emptySpanS="0"
+                        columnsXL="3"
+                        columnsL="2"
+                        columnsM="2"
+                        singleContainerFullSize="false"
+                    />
+                </f:layout>
+                <f:formContainers>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Product Interested">
+                                <f:fields>
+                                    <MultiComboBox
+                                        id="pinterets"
+                                       
+                                        items="{ProductInterest>/ZPRDINTER}"
+                                    >
+                                        <core:Item
+                                            text="{ProductInterest>PrdInterest}"
+                                        />
+                                    </MultiComboBox>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Product Demo">
+                                <f:fields>
+                                    <Select
+                                        id="pdemo"
+                                        selectedKey="{Country}"
+                                        items="{ProductInterest>/ZPRDDEMO}"
+                                    >
+                                        <items>
+                                            <core:Item
+                                                text="{ProductInterest>ProductDemo}"
+                                            />
+                                        </items>
+                                    </Select>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                    <f:FormContainer>
+                        <f:formElements>
+                            <f:FormElement label="Where did you hear about us?">
+                                <f:fields>
+                                    <Select
+                                        id="phear"
+                                       
+                                        selectedKey="{Country}"
+                                        items="{ProductInterest>/ZHEAR}"
+                                    >
+                                        <core:Item
+                                            text="{ProductInterest>HearUs}"
+                                        />
+                                    </Select>
+                                </f:fields>
+                            </f:FormElement>
+                        </f:formElements>
+                    </f:FormContainer>
+                </f:formContainers>
+            </f:Form>
+        </FlexBox>
+
+            <Text
+              text="{i18n>Submit_Form_Text}"
+                class="pleaseenter1"
+            />
+            <HBox
+                alignItems="Center"
+                justifyContent="Center"
+            >
+                <Button
+                    text="{i18n>Create_new_profile}"
+                    press="onCreateProfile"
+                    class="wide-create"
+                    width="300px"
+                />
+            </HBox>
+        </VBox>
+    </Page>
+</mvc:View>
