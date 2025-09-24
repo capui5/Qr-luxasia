@@ -115,7 +115,7 @@
                                 <f:fields>
                                     <Select
                                         id="countrycode"
-                                       editable="false"
+                                       editable="true"
                                         items="{path: 'CountryTelCodeModel>/' ,
                                         length:5000}"
                                            
