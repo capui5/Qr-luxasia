@@ -115,10 +115,10 @@
                                 <f:fields>
                                     <Select
                                         id="countrycode"
-                                       editable="true"
+                                        editable="true"
                                         items="{path: 'CountryTelCodeModel>/' ,
                                         length:5000}"
-                                           
+                                        change="onCountryCodeChange"
                                     >
                                         <items>
                                             <core:Item
@@ -134,7 +134,7 @@
                                     <Input
                                         placeholder="{i18n>Mobile_Number}"
                                         id="phoneno"
-                                           required="true"
+                                        required="true"
                                     />
                                 </f:fields>
                             </f:FormElement>
