@@ -115,10 +115,10 @@
                                 <f:fields>
                                     <Select
                                         id="countrycode"
-                                        editable="true"
+                                        editable="false"
                                         items="{path: 'CountryTelCodeModel>/' ,
                                         length:5000}"
-                                        change="onCountryCodeChange"
+
                                     >
                                         <items>
                                             <core:Item
@@ -181,6 +181,14 @@
                                             />
                                         </items>
                                     </Select>
+                                </f:fields>
+                            </f:FormElement>
+                            <f:FormElement label="Tourist">
+                                <f:fields>
+                                    <CheckBox
+                                        select="onSelectTourist"
+                                        selected="false"
+                                    />
                                 </f:fields>
                             </f:FormElement>
                             <f:FormElement label="{i18n>Date_Of_Birth}">

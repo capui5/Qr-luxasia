@@ -170,23 +170,10 @@ sap.ui.define([
       });
     },
 
-    onCountryCodeChange: function (oEvent) {
-      // Get the selected country code key (Land1)
-      var oCountryCodeSelect = oEvent.getSource();
-      var sSelectedCountryKey = oCountryCodeSelect.getSelectedKey();
-
-      if (!sSelectedCountryKey) {
-        console.warn("No country code selected");
-        return;
-      }
-
-      console.log("Selected country code key:", sSelectedCountryKey);
-
-      // Update the country dropdown to match the selected country code
-      var oCountrySelect = this.byId("country");
-      oCountrySelect.setSelectedKey(sSelectedCountryKey);
-
-      console.log("Updated country to:", sSelectedCountryKey);
+onSelectTourist: function (oEvent) {
+      var bSelected = oEvent.getParameter("selected");
+      var oCountryCodeInput = this.getView().byId("countrycode");
+      oCountryCodeInput.setEditable(bSelected);
     },
 
     CustomerInterest: function () {
