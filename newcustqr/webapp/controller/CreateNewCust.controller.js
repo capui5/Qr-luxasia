@@ -153,11 +153,19 @@ sap.ui.define([
         success: function (data) {
           console.log(data.d.results);
 
+          // // Sort by TelCode numerically ascending (e.g. +1, +2, +60)
+          var aSorted = data.d.results.slice().sort(function (a, b) {
+            var numA = parseInt(a.TelCode.replace(/\D/g, ""), 10);
+            var numB = parseInt(b.TelCode.replace(/\D/g, ""), 10);
+            return numA - numB;
+          });
+
           // Create a new JSON model
           var oModel = new sap.ui.model.json.JSONModel();
 
           // Set received data to the JSON model
-          oModel.setData(data.d.results);
+          //  oModel.setData(data.d.results);
+          oModel.setData(aSorted);
 
           // Set the JSON model to your view or component
           that.getView().setModel(oModel, "CountryTelCodeModel");
