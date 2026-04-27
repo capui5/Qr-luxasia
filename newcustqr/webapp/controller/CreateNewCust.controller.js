@@ -10,11 +10,11 @@ sap.ui.define([
 
   return Controller.extend("com.newcustqr.newcustqr.controller.CreateNewCust", {
     onInit: function () {
-
-      var decryptedData = atob(window.location.search.split("?BA=")[1]);
+      var base64 = new URLSearchParams(window.location.search).get("BA");
+      var decryptedData = decodeURIComponent(escape(atob(base64)));
+      // var decryptedData = atob(new URLSearchParams(window.location.search).get("BA"));
       var UserEmail = decryptedData.split("##")[0];
       var CountryCode = decryptedData.split("##")[2];
-      sap.ui.getCore().getConfiguration().setLanguage(CountryCode);
       var BAUserID = decryptedData.split("##")[2];
       var qrCodeGeneratedDateTime = new Date(decryptedData.split("##")[2]);
       var currentDateTime = new Date();
@@ -155,8 +155,8 @@ sap.ui.define([
 
           // // Sort by TelCode numerically ascending (e.g. +1, +2, +60)
           var aSorted = data.d.results.slice().sort(function (a, b) {
-            var numA = parseInt(a.TelCode.replace(/\D/g, ""), 10);
-            var numB = parseInt(b.TelCode.replace(/\D/g, ""), 10);
+            var numA = parseInt((a.TelCode || "").replace(/\D/g, ""), 10);
+            var numB = parseInt((b.TelCode || "").replace(/\D/g, ""), 10);
             return numA - numB;
           });
 
@@ -178,7 +178,7 @@ sap.ui.define([
       });
     },
 
-onSelectTourist: function (oEvent) {
+    onSelectTourist: function (oEvent) {
       var bSelected = oEvent.getParameter("selected");
       var oCountryCodeInput = this.getView().byId("countrycode");
       oCountryCodeInput.setEditable(bSelected);
@@ -235,7 +235,7 @@ onSelectTourist: function (oEvent) {
     },
     onCreateProfileServiceCall: function () {
       var that = this;
-      var decryptedData = atob(window.location.search.split("?BA=")[1]);
+      var decryptedData = atob(new URLSearchParams(window.location.search).get("BA"));
       var sStoreId = decryptedData.split("##")[0];
       var UserEmail = decryptedData.split("##")[1];
       var BAUserID = decryptedData.split("##")[3];
