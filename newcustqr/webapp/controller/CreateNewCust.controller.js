@@ -10,9 +10,8 @@ sap.ui.define([
 
   return Controller.extend("com.newcustqr.newcustqr.controller.CreateNewCust", {
     onInit: function () {
-      var base64 = new URLSearchParams(window.location.search).get("BA");
+      var base64 = (new URLSearchParams(window.location.search).get("BA") || "").replace(/-/g, "+").replace(/_/g, "/");
       var decryptedData = decodeURIComponent(escape(atob(base64)));
-      // var decryptedData = atob(new URLSearchParams(window.location.search).get("BA"));
       var UserEmail = decryptedData.split("##")[0];
       var CountryCode = decryptedData.split("##")[2];
       var BAUserID = decryptedData.split("##")[2];
@@ -235,7 +234,8 @@ sap.ui.define([
     },
     onCreateProfileServiceCall: function () {
       var that = this;
-      var decryptedData = atob(new URLSearchParams(window.location.search).get("BA"));
+      var base64 = (new URLSearchParams(window.location.search).get("BA") || "").replace(/-/g, "+").replace(/_/g, "/");
+      var decryptedData = decodeURIComponent(escape(atob(base64)));
       var sStoreId = decryptedData.split("##")[0];
       var UserEmail = decryptedData.split("##")[1];
       var BAUserID = decryptedData.split("##")[3];
