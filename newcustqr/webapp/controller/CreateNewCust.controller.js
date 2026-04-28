@@ -14,6 +14,7 @@ sap.ui.define([
       var decryptedData = decodeURIComponent(escape(atob(base64)));
       var UserEmail = decryptedData.split("##")[0];
       var CountryCode = decryptedData.split("##")[2];
+        sap.ui.getCore().getConfiguration().setLanguage(CountryCode);
       var BAUserID = decryptedData.split("##")[2];
       var qrCodeGeneratedDateTime = new Date(decryptedData.split("##")[2]);
       var currentDateTime = new Date();
